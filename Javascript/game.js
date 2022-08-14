@@ -180,5 +180,11 @@ document.addEventListener("keydown", function(event) {
     
   }
 
+  // Left 2 do
+  //<------------------------------------------->
+  // Add function for moving the boxes
+  // Add function for when al boxes is in "goal"
+  //<------------------------------------------->
+
 
 
