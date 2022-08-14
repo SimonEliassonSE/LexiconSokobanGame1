@@ -128,13 +128,6 @@ document.addEventListener("keydown", function(event) {
     }
   });
 
-  // Update charac
-  function setNewPosition()
-  {
-
-  }
-
-
   // Create a function for moving the character
   // Should also contain ways to prevent character from walking over walls and other objects.
   // needs 2 params, characterObject and where to go

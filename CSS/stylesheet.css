@@ -10,8 +10,11 @@ margin: 75px 100px 75px 50px ;
     display: grid;
     width: 1000px;
     margin: 50px auto; 
+    width: 950px;
 
 }
+
+
 
 .tile-space{
     background: url("../img/ground.png");
