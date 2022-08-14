@@ -1,0 +1,52 @@
+
+body{
+background-color: rgb(216, 224, 227);
+margin: 75px 100px 75px 50px ;
+
+}
+
+
+#gameboard{
+    display: grid;
+    width: 1000px;
+    margin: 50px auto; 
+
+}
+
+.tile-space{
+    background: url("../img/ground.png");
+    width: 50px;
+    height: 50px;    
+}
+
+.tile-wall{
+    background: url("../img/wall.png");
+    width: 50px;
+    height: 50px;       
+}
+
+.tile-goal{
+    background-color: rgb(37, 193, 60);
+    width: 50px;
+    height: 50px;       
+}
+
+.entity-block{
+    background: url("../img/cate.png");
+    width: 50px;
+    height: 50px;      
+}
+
+.entity-player{
+    background: url("../img/player.png");
+    width: 50px;
+    height: 50px;      
+}
+
+
+/*  Legend
+    W = Wall
+    B = Movable block
+    P = Player starting position
+    G = Goal area for the blocks
+*/
