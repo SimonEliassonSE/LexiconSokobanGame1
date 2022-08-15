@@ -3,6 +3,7 @@
 // en array som lagrar de olika lådornas värden
 var blocks = []
 
+
 // ett objekt som lagrar spelar karaktärens värden
 var character = {
     xCordinates: 0,
@@ -61,7 +62,7 @@ function createGameBoard(placeHolder)
             {
                 columnContainer.classList.add(Entities.Block);
                 // adderar lådorna till blocks arrayen
-                blocks.push({xCordinates: row, yCordinates: cell, characterObject: false, type: Entities.Block })
+                blocks.push({id: row + '-' + cell,xCordinates: row, yCordinates: cell, characterObject: false, type: Entities.Block })
             }
                         
             columnContainer.style.float = 'left'
@@ -134,6 +135,7 @@ document.addEventListener("keydown", function(event) {
   function moveElement(elementToMove, where)
   {
     // Create placeholders for the elementToMove current position
+    console.log(finishedBlocks);
     var currentXAxis = elementToMove.xCordinates;
     var currentYAxis = elementToMove.yCordinates;
 
@@ -160,31 +162,78 @@ document.addEventListener("keydown", function(event) {
     }
 
     // Ones we know where the elementToMove should move to we need to check if the element actually can move there. 
-    var oldPosition = document.getElementById(character.xCordinates + "-" + character.yCordinates);
+
+    var oldPosition = document.getElementById(character.xCordinates + "-" + character.yCordinates);    
     var newPosition = document.getElementById(currentXAxis + "-" + currentYAxis);
+
 
     if(newPosition.classList.contains(Tiles.Wall))
     {
        return false;
     }
 
+
+    // If the new position contains Blocks, we need to grab that specific block and move it in the same direction the player went.
+    else if (newPosition.classList.contains(Entities.Block))
+    {        
+        console.log(Entities.Block)
+    }
     
     newPosition.classList.add(character.type);
-    console.log(newPosition);
     oldPosition.classList.remove(character.type);
-    console.log(oldPosition);
 
     elementToMove.xCordinates = currentXAxis;
     elementToMove.yCordinates = currentYAxis;
-    
+    gameOver();
+    return true;
     
   }
 
+  var finishedBlocks = []
+ // if al blocks have a goal tile in it theye will be added to the finishedBlocks array 
+ // The finishedBlocksArray will look at the total length and if al 6 blocks contains tile goals the aleart will show and the board will be removed.
+  function gameOver()
+  {
+    for(let i = 0; i < blocks.length; i++)
+    {   
+        var currentBlockXAxis = blocks[i].xCordinates;
+        var currentBlockYAxis = blocks[i].yCordinates;              
+        
+        var currentPosition = document.getElementById(currentBlockXAxis + "-" + currentBlockYAxis);
+
+        if (currentPosition.classList.contains(Tiles.Goal))
+        {
+            finishedBlocks.push({id: i})
+        }
+        
+    }
+
+    if(finishedBlocks.length == 6)
+        {
+            for(let row = 0; row < tileMap01.height; row++)
+
+            {
+                for (let column = 0; column < tileMap01.width; column++)
+                {
+                    let element = document.getElementById(row + '-' + column)
+                    element.remove();                   
+                }
+            }
+        }
+
+    else if (finishedBlocks.length < 6)
+    {
+        finishedBlocks = [];
+    }
+  }
+
+
   // Left 2 do
   //<------------------------------------------->
-  // Add function for moving the boxes
-  // Add function for when al boxes is in "goal"
+  // Add function for moving the boxes 
   //<------------------------------------------->
+        // Finished ? 
+        // probably done?: Add function for when al boxes is in "goal"
 
 
 
